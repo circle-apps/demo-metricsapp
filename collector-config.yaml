@@ -1,0 +1,37 @@
+receivers:
+  otlp:
+    protocols:
+      grpc:
+        endpoint: 0.0.0.0:4317
+      http:
+        endpoint: 0.0.0.0:4318
+exporters:
+  debug:
+    verbosity: detailed  
+  otlphttp/openobserve:
+    endpoint: https://api.openobserve.ai/api/dhilipsiva_organization_50626_TUzeg6FqggkC87R
+    headers:
+      Authorization: Basic ZGhpbGlwc2l2YUBwbS5tZTpYNFA3MjkzZ2s2TVE1MDh3bDFqRg==
+      stream-name: default
+# exporters:
+#   debug:
+#     verbosity: detailed  
+#   otlp/openobserve:
+#     endpoint: api.openobserve.ai:5081
+#     headers:
+#       Authorization: "Basic ZGhpbGlwc2l2YUBwbS5tZTpYNFA3MjkzZ2s2TVE1MDh3bDFqRg=="
+#       organization: dhilipsiva_organization_50626_TUzeg6FqggkC87R
+#       stream-name: default
+#     tls:
+#       insecure: true
+service:
+  pipelines:
+    traces:
+      receivers: [otlp]
+      exporters: [debug]
+    metrics:
+      receivers: [otlp]
+      exporters: [debug]
+    logs:
+      receivers: [otlp]
+      exporters: [debug]
