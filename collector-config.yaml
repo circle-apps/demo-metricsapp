@@ -28,10 +28,10 @@ service:
   pipelines:
     traces:
       receivers: [otlp]
-      exporters: [debug]
+      exporters: [debug, otlphttp/openobserve]
     metrics:
       receivers: [otlp]
-      exporters: [debug]
+      exporters: [debug, otlphttp/openobserve]
     logs:
       receivers: [otlp]
-      exporters: [debug]
+      exporters: [debug, otlphttp/openobserve]
